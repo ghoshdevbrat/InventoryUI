@@ -1,0 +1,20 @@
+.brand {
+    src: url("../../../assets/others/bbps.jpeg");
+    width:"50px;";
+    height:"75px;";
+    alt:"PaySpot";
+}
+
+.icon {
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.nav {
+    /* border-radius: 50px 50px 50px 50px; */
+    /* background: #2b3b92; */
+}
+
+nav {
+    float: right;
+}

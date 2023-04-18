@@ -1,0 +1,102 @@
+<div class="bg-image" *ngIf="(currentUser$ | async) === null">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4" style="margin-top: 200px;">
+            <mat-card class="loginBox">
+                <mat-card-title class="text-center">Login</mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+                <mat-divider [inset]="true"></mat-divider>
+                <mat-divider [vertical]="true"></mat-divider>
+                <mat-card-content>
+                    <form #loginForm="ngForm" (ngSubmit)="login()" novalidate>
+                        <!-- <mat-form-field appearance="outline"> -->
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter Username</mat-label>
+                            <input matInput type="text" name="username" [(ngModel)]="model.username" autofocus="true"
+                                required>
+                            <mat-icon matSuffix>account_circle</mat-icon>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" name="password"
+                                [(ngModel)]="model.password" required>
+                            <!-- <button mat-icon-button matSuffix (click)="hide = !hide" 
+                                [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide"> -->
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+                            </mat-icon>
+                            <!-- </button> -->
+                        </mat-form-field>
+                        <mat-checkbox class="example-margin" color="primary">
+                            Remember Me!
+                        </mat-checkbox>
+                        <button mat-raised-button color="primary" type="submit"
+                            class="btn btn-primary btn-lg btn-block mt-4">
+                            Sign-In <mat-icon>login</mat-icon>
+                        </button>
+                    </form>
+                </mat-card-content>
+                <!-- <img mat-card-image src="../../../assets/payspot/Logo.png">
+                <mat-card-actions></mat-card-actions> -->
+                <mat-card-footer>
+                    <p style="text-align: center;">Don't have account? <a routerLink="/contact">Sign Up Here</a></p>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<!-- <div class="container-fluid">
+    <div class="row no-gutter loginBox"> -->
+<!-- The image half -->
+<!-- <div class="col-md-6 d-none d-md-flex bg-image"></div> -->
+<!-- The content half -->
+<!-- <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h3 class="display-4 text-center">Login!</h3>
+                            <p class="text-muted mb-4 text-center">One stop payments solution.</p>
+                            <form #loginForm_old="ngForm" (ngSubmit)="login()">
+                                <div class="form-group mb-3">
+                                    <input id="inputEmail"
+                                           type="text"
+                                           name="userName"
+                                           [(ngModel)]="model.userName"
+                                           placeholder="Agent Id/ Mobile"
+                                           required=""
+                                           autofocus=""
+                                           class="form-control rounded-pill border-0 shadow-sm px-4">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="inputPassword"
+                                           type="password"
+                                           name="password"
+                                           [(ngModel)]="model.password"
+                                           placeholder="Password"
+                                           required=""
+                                           class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                </div>
+                                <div class="custom-control custom-checkbox mb-3">
+                                    <input id="customCheck1" type="checkbox" checked class="custom-control-input">
+                                    <label for="customCheck1" class="custom-control-label">Remember password</label>
+                                </div>
+                                <button type="submit"
+                                        class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">
+                                    Sign in
+                                </button> -->
+<!--<div class="text-center d-flex justify-content-between mt-4">
+                                    <p>
+                                        Code by <a href="#" class="font-italic text-muted">
+                                            <u>Jassa</u>
+                                        </a>
+                                    </p>
+                                </div>-->
+<!-- </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> -->

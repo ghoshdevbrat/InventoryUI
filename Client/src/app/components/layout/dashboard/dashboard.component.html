@@ -1,0 +1,62 @@
+<mat-grid-list class="dashboard-grid-list" cols="{{dashboardGridCols}}" gutterSize="20px" rowHeight="100px">
+    <!--First Tile-->
+    <mat-grid-tile colspan="1" fxLayout="row" class="dashboard-tile dashboard-tile-1 colorful-tile"
+        fxLayoutAlign="start stretch" matRipple>
+        <div fxFlex="1125%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+            <mat-icon>group</mat-icon>
+        </div>
+        <div fxFlex="1175%" fxLayout="column" fxLayoutAlign="center center" class="h-100 text-right">
+            <div class="dashboard-tile-heading">Total Inventory: </div>
+            <div class="dashboard-tile-sub-heading">{{8450 | number}}</div>
+        </div>
+    </mat-grid-tile>
+    <!--First Tile-->
+    <!--Second Tile-->
+    <mat-grid-tile colspan="1" fxLayout="row" class="dashboard-tile dashboard-tile-2 colorful-tile"
+        fxLayoutAlign="start stretch" matRipple>
+        <div fxFlex="1125%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+            <mat-icon>currency_rupee</mat-icon>
+        </div>
+        <div fxFlex="1175%" fxLayout="column" fxLayoutAlign="center center" class="h-100 text-right">
+            <div class="dashboard-tile-heading">Today: </div>
+            <div class="dashboard-tile-sub-heading">{{2342345 | currency:"INR":"symbol"}}</div>
+        </div>
+    </mat-grid-tile>
+    <!--Second Tile-->
+    <!--Third Tile-->
+    <mat-grid-tile colspan="1" fxLayout="row" class="dashboard-tile dashboard-tile-3 colorful-tile"
+        fxLayoutAlign="start stretch" matRipple>
+        <div fxFlex="1125%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+            <mat-icon>currency_rupee</mat-icon>
+        </div>
+        <div fxFlex="1175%" fxLayout="column" fxLayoutAlign="center center" class="h-100 text-right">
+            <div class="dashboard-tile-heading">Month: </div>
+            <div class="dashboard-tile-sub-heading">{{22342345 | currency:"INR":"symbol"}}</div>
+        </div>
+    </mat-grid-tile>
+    <!--Third Tile-->
+    <!--Fourth Tile-->
+    <mat-grid-tile colspan="1" fxLayout="row" class="dashboard-tile dashboard-tile-4 colorful-tile"
+        fxLayoutAlign="start stretch" matRipple>
+        <div fxFlex="1125%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+            <mat-icon>currency_rupee</mat-icon>
+        </div>
+        <div fxFlex="1175%" fxLayout="column" fxLayoutAlign="center center" class="h-100 text-right">
+            <div class="dashboard-tile-heading">Revenue: </div>
+            <div class="dashboard-tile-sub-heading">{{32456 | currency:"INR":"symbol"}}</div>
+        </div>
+    </mat-grid-tile>
+    <!--Fourth Tile-->
+    <!--Fifth Tile-->
+    <mat-grid-tile colspan="{{cardColspan}}" rowspan="4" fxLayout="row"
+        class="dashboard-tile dashboard-tile-6 colorful-tile" fxLayoutAlign="start stretch" matRipple>
+        <div class="scroll" [chart]="donutChart"></div>
+    </mat-grid-tile>
+    <!--Fifth Tile-->
+    <!--Sixth Tile-->
+    <mat-grid-tile colspan="{{cardColspan}}" rowspan="4" fxLayout="row"
+        class="dashboard-tile dashboard-tile-6 colorful-tile" fxLayoutAlign="start stretch" matRipple>
+        <div class="scroll" [chart]="columnChart"></div>
+    </mat-grid-tile>
+    <!--Sixth Tile-->
+</mat-grid-list>

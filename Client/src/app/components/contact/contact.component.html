@@ -1,0 +1,98 @@
+<div class="container mt-5">
+    <div class="row mt-2 flex justify-content-center">
+        <!-- <div class="col-md-3 text-center">
+            <img src="../../../assets/payspot/MainLogoBig.jpeg" width="80%" height="auto;">
+        </div> -->
+        <div class="col-md-6 contact">
+            <mat-card>
+                <mat-card-title>Contact Us</mat-card-title>
+                <mat-card-subtitle>Let us know about you...</mat-card-subtitle>
+                <mat-card-content>
+                    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+                        <!-- <app-input-validation [label]='"Name"' [formControl]='registerForm.controls["name"]'
+                            [type]='"text"'></app-input-validation>
+                        <app-input-validation [label]='"Email"' [formControl]='registerForm.controls["email"]'
+                            [type]='"email"'></app-input-validation>
+                        <app-input-validation [label]='"Mobile"' [formControl]='registerForm.controls["mobile"]'
+                            [type]='"text"'></app-input-validation>
+                        <mat-form-field appearance="fill" *ngIf="states !== null">
+                            <mat-label>State</mat-label>
+                            <mat-select>
+                                <mat-option *ngFor="let state of states;" value="state.stateName">{{state.stateName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <app-input-validation [label]='"Query"' [formControl]='registerForm.controls["query"]'
+                            [type]='"textarea"'></app-input-validation> -->
+                        <mat-form-field appearance="fill">
+                            <mat-label>Name</mat-label>
+                            <input matInput formControlName="name" [errorStateMatcher]="customErrorStateMatcher">
+                            <mat-error *ngIf="getFormControl('name').hasError('required')"
+                                [innerHTML]="getErrorMessage('name','required')"></mat-error>
+                            <mat-error *ngIf="getFormControl('name').hasError('minlength')"
+                                [innerHTML]="getErrorMessage('name','minlength')"></mat-error>
+                            <mat-error *ngIf="getFormControl('name').hasError('pattern')"
+                                [innerHTML]="getErrorMessage('name','pattern')"></mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email">
+                            <mat-error *ngIf="getFormControl('email').hasError('required')"
+                                [innerHTML]="getErrorMessage('email','required')"></mat-error>
+                            <mat-error *ngIf="getFormControl('email').hasError('email')"
+                                [innerHTML]="getErrorMessage('email','email')"></mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Mobile</mat-label>
+                            <input matInput formControlName="mobile">
+                            <mat-error *ngIf="getFormControl('mobile').hasError('required')"
+                                [innerHTML]="getErrorMessage('mobile','required')"></mat-error>
+                            <mat-error *ngIf="getFormControl('mobile').hasError('minlength')"
+                                [innerHTML]="getErrorMessage('mobile','minlength')"></mat-error>
+                            <mat-error *ngIf="getFormControl('mobile').hasError('maxlength')"
+                                [innerHTML]="getErrorMessage('mobile','maxlength')"></mat-error>
+                            <mat-error *ngIf="getFormControl('mobile').hasError('pattern')"
+                                [innerHTML]="getErrorMessage('mobile','pattern')"></mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" *ngIf="states !== null">
+                            <mat-label>State</mat-label>
+                            <mat-select formControlName="state">
+                                <!-- <mat-optgroup label="A"> -->
+                                <mat-option *ngFor="let state of states" [value]="state.stateName">
+                                    {{state.stateName}}
+                                </mat-option>
+                                <!-- </mat-optgroup> -->
+                            </mat-select>
+                            <mat-error *ngIf="getFormControl('state').hasError('required')"
+                                [innerHTML]="getErrorMessage('state','required')"></mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter your query here</mat-label>
+                            <textarea matInput formControlName="query"></textarea>
+                            <mat-error *ngIf="getFormControl('query').hasError('required')"
+                                [innerHTML]="getErrorMessage('query','required')"></mat-error>
+                        </mat-form-field>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button mat-raised-button color="primary" class="btn-block mt-3" routerLink="/login">
+                                    Go to Sign-In <mat-icon>login</mat-icon>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button mat-raised-button color="primary" class="btn-block mt-3"
+                                    [disabled]="!registerForm.valid">
+                                    Submit Query <mat-icon>send</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+                <img mat-card-image>
+                <mat-card-actions></mat-card-actions>
+                <mat-card-footer></mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="mt-4">{{registerForm.value | json}}</div> -->

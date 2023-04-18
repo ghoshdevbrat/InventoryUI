@@ -1,0 +1,216 @@
+<div class="root">
+  <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="nav"
+    *ngIf="currentUser !== null">
+    <!-- left box of toolbar starts -->
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-icon-button (click)="isExpanded = !isExpanded" matTooltip="Sidebar">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Dashboard" (click)="navigation('dashboard')">
+        <mat-icon>home</mat-icon>
+      </button>
+      <span></span>
+    </div>
+    <!-- left box of toolbar ends -->
+    <!-- center box of toolbar starts -->
+    <div>
+      <button type="button" mat-stroked-button (click)="showStatistics = !showStatistics" fxHide.lt-md="true"
+        matTooltip="click to show/hide expension">
+        <mat-icon>analytics</mat-icon>
+        <span class="ml mr">Statistics</span>
+        <mat-icon class="rotatable" [ngClass]="{ 'rotate-180': showStatistics}">keyboard_arrow_down</mat-icon>
+      </button>
+    </div>
+    <!-- center box of toolbar ends -->
+    <!-- right box of toolbar starts -->
+    <div>
+      <!-- <button type="button" mat-stroked-button class="mr" (click)="getAvailableBalance()" [disabled]="isLoading">
+        <mat-icon>credit_card</mat-icon>&nbsp;{{availableBalance | currency:"INR"}}
+        <mat-progress-bar [value]="60" mode="indeterminate" *ngIf="isLoading" color="accent"></mat-progress-bar> -->
+        <!-- <mat-progress-spinner mode="indeterminate" role="progressbar" *ngIf="!isLoading"></mat-progress-spinner> -->
+      <!-- </button> -->
+      <button type="button" mat-stroked-button class="mr" [matMenuTriggerFor]="user" fxHide.lt-md="true"
+        matTooltip="User">
+        <mat-icon>account_circle</mat-icon> {{currentUser.username | titlecase}}
+      </button>
+      <button type="button" mat-icon-button [matMenuTriggerFor]="notification" class="ml mr" matTooltip="Notifications">
+        <mat-icon [matBadge]="notifications.length" 
+          *ngIf="notifications.length > 0"
+          [matBadgeColor]="notifications.length > 0 ? 'accent' : 'warm'"
+          >notifications</mat-icon>
+      </button>
+      <button type="button" mat-icon-button [matMenuTriggerFor]="topmenu" matTooltip="Menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+    <!-- right box of toolbar ends -->
+
+    <mat-menu #user="matMenu">
+      <button mat-menu-item (click)="navigation('profile')">Profile</button>
+      <button mat-menu-item (click)="navigation('change-password')">Change Password</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+
+    <mat-menu #topmenu="matMenu">
+      <button (click)="navigation('dashboard')" mat-menu-item>Dashborad</button>
+      <button mat-menu-item>Transactions</button>
+      <button mat-menu-item [matMenuTriggerFor]="user">{{currentUser.username | titlecase}}</button>
+      <button mat-menu-item (click)="showStatistics = !showStatistics">Statistics</button>
+    </mat-menu>
+    
+    <mat-menu #notification="matMenu">
+      <div *ngFor="let notification of notifications;let i = index;">
+        <button mat-menu-item (click)="updateNotification(notification)">
+          {{notification.message}}
+        </button>
+        <mat-divider></mat-divider>
+      </div>
+     
+      <!-- <button mat-menu-item>Transaction Id: 5372843 is successfull</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>Transaction Id: 12345 is Pending</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>You have received topup of 5 L</button> -->
+    </mat-menu>
+  </mat-toolbar>
+  <mat-expansion-panel [expanded]="showStatistics">
+    <div class="mt" fxLayout="row" fxLayoutAlign="space-evenly center">
+      <div class="font-weight-bold">Statistics</div>
+      <div matRipple class="p-10 hand-icon">Today: 1,23,000/-</div>
+      <div matRipple class="p-10 hand-icon">This week: 7,42,000/-</div>
+      <div matRipple class="p-10 hand-icon">This month: 24,75,000/-</div>
+    </div>
+  </mat-expansion-panel>
+
+  <!--Side Nav-->
+  <mat-sidenav-container class="drawer-container" autosize>
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()">
+      <div class="user-logo">
+        <mat-icon class="user-icon">person_outline</mat-icon>
+        <div *ngIf="isShowing" class="v-align-middle">{{currentUser.username | titlecase}}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <mat-nav-list>
+        <a mat-list-item routerLink="dashboard" routerLinkActive="link-active">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
+          <mat-icon mat-list-icon>dashboard</mat-icon>
+        </a>
+        <a mat-list-item routerLink="leads" routerLinkActive="link-active">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Leads</span>
+          <mat-icon mat-list-icon>query_stats</mat-icon>
+        </a>
+        <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+          <span class="full-width" *ngIf="isExpanded || isShowing">User Management</span>
+          <mat-icon mat-list-icon>person_outline</mat-icon>
+          <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">
+            expand_more
+          </mat-icon>
+        </mat-list-item>
+        <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+          <a mat-list-item routerLink="/add-user" routerLinkActive="link-active">Add User</a>
+          <a mat-list-item routerLink="/users" routerLinkActive="link-active">View Users</a>
+          <!-- <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+            <span class="full-width" *ngIf="isExpanded || isShowing">Nested Menu</span>
+            <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">
+              expand_more</mat-icon>
+          </mat-list-item>
+          <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+            <a mat-list-item routerLink="/dashboard" routerLinkActive="link-active">SubSubmenu Item 1</a>
+            <a mat-list-item routerLink="/dashboard" routerLinkActive="link-active">SubSubmenu Item 2</a>
+          </div> -->
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="main">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-container>
+
+
+  <!-- <mat-drawer-container class="drawer-container">
+    <mat-drawer #drawer class="drawer" mode="side" opened="false">
+      <div class="user-logo">
+        <mat-icon class="user-icon">person_outline</mat-icon>
+        <div class="v-align-middle">{{currentUser.username | titlecase}}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <mat-nav-list class="sidebar-navlist">
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="link-active">
+          <mat-icon>dashboard</mat-icon>&nbsp;Dashboard
+        </a>
+        <a mat-list-item>
+          <mat-icon>person_outline</mat-icon>
+          &nbsp;User Management
+        </a>
+        <a mat-list-item routerLink="/leads" routerLinkActive="link-active">
+          <mat-icon>summarize</mat-icon>&nbsp;Queries
+        </a>
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="link-active">
+          <mat-icon>payment</mat-icon>&nbsp;payment
+        </a>
+      </mat-nav-list>
+    </mat-drawer> -->
+  <!-- <mat-drawer #drawerMini class="drawerMini" mode="side" opened="true" *ngIf="!showSideNav">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="linkActive">
+          <mat-icon>dashboard</mat-icon>
+        </a>
+        <a mat-list-item>
+          <mat-icon>person_outline</mat-icon>
+        </a>
+        <a mat-list-item routerLink="/leads" routerLinkActive="linkActive">
+          <mat-icon>person_outline</mat-icon>
+        </a>
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="linkActive">
+          <mat-icon>payment</mat-icon>
+        </a>
+      </mat-nav-list>
+    </mat-drawer> -->
+  <!--Side Nav-->
+  <!-- <div class="main">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container> -->
+</div>
+
+<!--Accordion Example-->
+<!-- <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header matRipple>         
+                    <mat-panel-title fxFlex="1 1 60%" fxFlex="1 1 100%" fxLayout="row"
+                        fxLayoutAlign="start center" class="text-large">
+                        <mat-icon>dashboard</mat-icon>
+                        <div class="text-blue ml">Dashboard</div>
+                    </mat-panel-title>
+              
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>   
+          <mat-expansion-panel>
+              <mat-expansion-panel-header matRipple>
+                  <div class="w-100" fxLayout="row" fxLayoutAlign="space-between start"
+                      fxLayout.lt-md="column">
+                      <mat-panel-title fxFlex="1 1 60%" fxFlex="1 1 100%" fxLayout="row"
+                          fxLayoutAlign="start center" class="text-large">
+                          <mat-icon>account_circle</mat-icon>
+                          <div class="text-blue ml">User Management</div>
+                      </mat-panel-title>
+                  </div>
+              </mat-expansion-panel-header>
+              <ul>
+                <li>Add User</li>
+                <li>Top up Wallet</li>
+              </ul>
+              <mat-action-row fxLayoutAlign="space-between start">
+                  <button mat-button color="warn">
+                      <mat-icon>delete</mat-icon>&nbsp;Delete
+                  </button>
+
+                  <button mat-button color="primary" class="mr">
+                      <mat-icon>call</mat-icon>&nbsp;Call
+                  </button>
+              </mat-action-row>
+          </mat-expansion-panel>     
+      </mat-accordion> -->

@@ -1,0 +1,146 @@
+<div flLayout="row" fxLayoutAlign="space-between start">
+    <div flFlex="1 1 50%" class="pl-2">
+        <h3>View Queries</h3>
+    </div>
+    <div flFlex="1 1 50%" class="pr-2">
+        <mat-icon>menu</mat-icon>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<mat-progress-bar [value]="60" mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+<div>
+    <mat-accordion fxFlex="1 1 100%">
+        <mat-expansion-panel *ngFor="let query of queries">
+            <mat-expansion-panel-header matRipple>
+                <div class="w-100" fxLayout="row" fxLayoutAlign="space-between start" fxLayout.lt-md="column">
+                    <mat-panel-title fxFlex="1 1 60%" fxFlex.lt-md="1 1 100%" fxLayout="row"
+                        fxLayoutAlign="start center" class="text-large">
+                        <mat-icon>account_circle</mat-icon>
+                        <div class="text-blue ml-2">&nbsp;{{query.name | titlecase}}</div>
+                    </mat-panel-title>
+
+                    <mat-panel-description fxFlex="1 1 40%" fxFlex="1 1 100%">
+                        <div class="text-right w-100">Submitted-On: {{query.createdOn | date: "mediumDate"}}
+                        </div>
+                    </mat-panel-description>
+                </div>
+            </mat-expansion-panel-header>
+            <table class="w-100 p-5">
+                <tr class="hidden">
+                    <td class="w-25">Id</td>
+                    <td class="w-25">:</td>
+                    <td class="font-weight-bold p">{{query.id}}</td>
+                </tr>
+                <tr>
+                    <td class="w-25">Submitte-On</td>
+                    <td class="w-25">:</td>
+                    <td class="font-weight-bold p">{{query.createdOn | date: "medium"}}</td>
+                </tr>
+                <tr>
+                    <td class="w-25">Status</td>
+                    <td class="w-25">:</td>
+                    <td class="font-weight-bold p">
+                        <span
+                            [ngClass]="{ 'red-text': query.pendingStatus, 'green-text': !query.pendingStatus}">{{!query.pendingStatus
+                            ? 'Replied' : 'Not-Replied'}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="w-25">Email</td>
+                    <td class="w-25">:</td>
+                    <td class="font-weight-bold p">{{query.email}}</td>
+                </tr>
+                <tr>
+                    <td class="w-25">Phone</td>
+                    <td class="w-25">:</td>
+                    <td class="font-weight-bold p">{{query.mobile}}</td>
+                </tr>
+            </table>
+            <mat-action-row fxLayoutAlign="space-between start">
+                <button mat-button color="warn" (click)="deleteQuery(query)">
+                    <mat-icon>delete</mat-icon>&nbsp;Delete
+                </button>
+
+                <button mat-button color="primary" class="mr">
+                    <mat-icon>call</mat-icon>&nbsp;Call
+                </button>
+            </mat-action-row>
+        </mat-expansion-panel>
+
+    </mat-accordion>
+</div>
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card class="mat-elevation-z2">
+                <mat-card-header>
+                    <mat-card-title>
+                        Contact Requests
+                    </mat-card-title>
+                    <button class="btn btn-primary"(click)="getQueries()">Submit</button>
+                </mat-card-header>
+                <hr [ngStyle]="{'margin-top':'0px;'}" />
+                <div class="row">
+                    <div [ngStyle]="{'height':'600px','overflow': 'auto','position': 'relative'}">
+                        <table mat-table [dataSource]="dataSource" matSortActive="id" matSortDirection="desc" matSort
+                            matSortDisableClear="">
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.id}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.name}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="email">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.email}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="mobile">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.mobile}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="query">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Query</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.query}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="state">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.state}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="createdOn">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Requested On</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.createdOn}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="pendingStatus">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.pendingStatus}}
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator [length]="totalCount" [pageSizeOptions]="[10, 15,25,50]" showFirstLastButtons></mat-paginator>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+ -->

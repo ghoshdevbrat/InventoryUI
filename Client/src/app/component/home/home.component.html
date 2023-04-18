@@ -1,0 +1,6 @@
+<div *ngIf="(currentUser$ | async) === null">
+    <app-login></app-login>
+</div>
+<div *ngIf="currentUser$ | async">
+    <app-dashboard></app-dashboard>
+</div>

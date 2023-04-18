@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="height: 50px;">
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="collapse navbar-collapse" id="navbarToggler">
+        <!-- <a class="navbar-brand" routerLink="getRoute()" routerLinkActive="active">
+            <img src="../../../assets/payspot/icon.png" alt="Payspot" style="width: 50px; height: 50px;">
+        </a> -->
+        <!-- <ng-container *ngIf="(currentUser$ | async) === null">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="search">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="search">
+                </div>
+                <button class="btn btn-success ml-2 my-sm-0 btn-sm" type="submit">Search</button>
+            </form>
+        </ng-container> -->
+        <!-- <ng-container *ngIf="currentUser !== null">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <ng-container *ngIf="currentUser.role === 'SuperAdmin'">
+                    <li class="nav-item dropdown" dropdown >
+                        <a class="nav-link dropdown-toggle" dropdownToggle role="button">
+                            User Management
+                        </a>
+                        <div class="dropdown-menu" *dropdownMenu>
+                            <a class="dropdown-item" routerLink="/users">Users</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/leads">Queries</a>
+                    </li>
+                </ng-container>
+                <li class="nav-item dropdown" dropdown *ngIf="currentUser.role === 'Agent'">
+                    <a class="nav-link dropdown-toggle" dropdownToggle role="button">
+                        Services Offered
+                    </a>
+                    <div class="dropdown-menu" *dropdownMenu>
+                        <a class="dropdown-item" *ngFor="let service of services">
+                            <img class="icon"
+                                src="../../../assets/others/{{service.icon}}">&nbsp;{{service.serviceName}}
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item dropDownItems" href="#">Explore More after login...</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" dropdown>
+                    <a class="nav-link dropdown-toggle" dropdownToggle role="button">
+                        Welcome {{currentUser.username | titlecase}}
+                    </a>
+                    <div class="dropdown-menu" *dropdownMenu>
+                        <a class="dropdown-item" routerLink="/profile">View Profile</a>
+                        <a class="dropdown-item" (click)="logout()">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </ng-container> -->
+    </div>
+</nav>
