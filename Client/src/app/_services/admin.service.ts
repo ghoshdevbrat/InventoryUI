@@ -5,6 +5,7 @@ import { Querydto } from '../_models/querydto';
 import { States } from '../_models/states';
 import { QueryModel } from '../_models/_admin/query-registration';
 import { ApiManagerService } from './api-manager.service';
+import { User } from '../_model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,6 @@ export class AdminService {
     return this.http.get<States[]>(this._baseUrl + 'Common/GetStates');
   }
 
-
-
   register(model: any) {
     console.log(model);
     console.log(this._baseUrl);
@@ -34,10 +33,8 @@ export class AdminService {
   delteQuery(model: Querydto) {
     return this.http.post(this._baseUrl + 'admin/update-query', model);
   }
-
-  getAvailableBalance(agentId: string) {
-    return this.http.get(this._baseUrl + 'admin/get-available-balance?agentId=' + agentId);
-  }
-
   
+  getUsers() {
+    return this.http.get<User[]>(`${this._baseUrl}account/getUsers`);
+  }
 }

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime, tap, switchMap, startWith, map } from "rxjs/operators";
 import { CommonErrorStateMatcher } from 'src/app/_helpers/common-error-state-matcher';
-import { AddUser } from 'src/app/_models/_user/add-user';
+import { User } from 'src/app/_models/_user/add-user';
 import { States } from 'src/app/_models/states';
 import { AdminService } from 'src/app/_services/admin.service';
 import Swal from 'sweetalert2';
@@ -28,11 +28,7 @@ export class AddUserComponent implements OnInit {
     private router: Router) {
     this.adminService.getStates().subscribe(states => {
       this.states = states;
-      this.toastr.success("States received..");
       // this.states = this.states.filter(option => option.stateName.startsWith("A"));
-    }, error => {
-      console.log(error);
-      this.toastr.error("Error received...")
     });
   }
 
@@ -95,10 +91,9 @@ export class AddUserComponent implements OnInit {
           if (errorType == "required") errorMessage = "You must choose a <strong>City</strong>";
         }
 
-      case "firstName":
+      case "checkIn":
         {
           if (errorType == "required") errorMessage = "You must enter a <strong>Check-In Date</strong>";
-          if (errorType == "MinLength") errorMessage = "Length should be greater than 3 characters";
         }
 
       case "checkOut":

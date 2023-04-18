@@ -24,7 +24,7 @@
               <input matInput formControlName="lastName">
             </mat-form-field>
             <mat-form-field appearance="fill">
-              <mat-label>Employee ID</mat-label>
+              <mat-label>Employee</mat-label>
               <input matInput formControlName="employeeId" [errorStateMatcher]="customErrorStateMatcher">
               <mat-error *ngIf="getFormControl('employeeId').hasError('required')"
                 [innerHTML]="getErrorMessage('employeeId','required')"></mat-error>              

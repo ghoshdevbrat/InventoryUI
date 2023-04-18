@@ -1,5 +1,8 @@
 export interface User {
     username: string;
-    token: string;
+    token: {
+        token: string;
+        refreshToken: string;
+    };
     roles: string[];
 }
