@@ -6,6 +6,9 @@ import { States } from '../_models/states';
 import { QueryModel } from '../_models/_admin/query-registration';
 import { ApiManagerService } from './api-manager.service';
 import { User } from '../_model/user';
+import { UserStatus } from '../_model/admin/user-status';
+import { Observable } from 'rxjs';
+import { AppRoles } from '../_model/admin/app-roles';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +16,7 @@ import { User } from '../_model/user';
 export class AdminService {
   private readonly _baseUrl: string;
 
-  constructor(private apiManager: ApiManagerService, private http: HttpClient) { 
+  constructor(private apiManager: ApiManagerService, private http: HttpClient) {
     this._baseUrl = environment.baseUrl;
   }
   getQueries() {
@@ -22,6 +25,14 @@ export class AdminService {
 
   getStates() {
     return this.http.get<States[]>(this._baseUrl + 'Common/GetStates');
+  }
+
+  getCities() {
+    return this.http.get<States[]>(this._baseUrl + 'Common/GetCities');
+  }
+
+  getCityByStateId(stateId: number) {
+    return this.http.get<States>(this._baseUrl + 'Common/GetCitiesByStateId?stateId=' + stateId);
   }
 
   register(model: any) {
@@ -33,8 +44,20 @@ export class AdminService {
   delteQuery(model: Querydto) {
     return this.http.post(this._baseUrl + 'admin/update-query', model);
   }
-  
+
   getUsers() {
     return this.http.get<User[]>(`${this._baseUrl}account/getUsers`);
+  }
+
+  getUserStatus(): Observable<UserStatus[]> {
+    return this.http.get<UserStatus[]>(`${this._baseUrl}account/getUserStatus`);
+  }
+
+  getRoles(): Observable<AppRoles[]> {
+    return this.http.get<AppRoles[]>(`${this._baseUrl}account/getRoles`);
+  }
+
+  addBulkUsers(model:any): Observable<any> {
+    return this.http.post<any>(`${this._baseUrl}Account/bulkRegister`, model);
   }
 }

@@ -10,9 +10,11 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UsersComponent } from './components/admin/users/users.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AddUserComponent } from './components/admin/users/add-user/add-user.component';
+import { StateMasterComponent } from './components/admin/masters/state-master/state-master.component';
+import { BulkUserAddComponent } from './components/admin/users/bulk-user-add/bulk-user-add.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'contact', component: ContactComponent },
   {
@@ -22,13 +24,19 @@ const routes: Routes = [
       { path: 'leads', component: LeadsComponent },
       { path: 'profile', component: UserProfileComponent },
       { path: 'users', component: UsersComponent },
-      { path: 'add-user', component: AddUserComponent }
+      { path: 'add-user', component: BulkUserAddComponent }
+    ]
+  },
+  {
+    path: 'master', component: LayoutComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'states', component: StateMasterComponent }
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

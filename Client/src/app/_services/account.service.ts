@@ -18,8 +18,10 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   login(model: any) {
+    debugger
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
       map((response: User) => {
+        console.log(response)
         const user = response;
         if(user) {
           //this.setCurrentUser(user);
