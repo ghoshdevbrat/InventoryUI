@@ -1,0 +1,152 @@
+<mat-card>
+    <mat-card-title>Add User</mat-card-title>
+    <mat-card-subtitle>
+        {{ addUserForm.controls.model.value | json }}
+    </mat-card-subtitle>
+    <mat-card-content>
+        <div [formGroup]="addUserForm">
+            <mat-accordion>
+                <mat-expansion-panel formArrayName="model"
+                    *ngFor="let item of addUserForm.get('model')['controls'];let i=index;first as isFirst"
+                    [expanded]="isFirst">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title><mat-icon>account_circle</mat-icon><span>&nbsp; #{{i + 1}}</span></mat-panel-title>
+                        <mat-panel-description></mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-card>
+                        <!-- <mat-card-title>User Details</mat-card-title> -->
+                        <mat-card-content>
+                            <div [formGroupName]="i">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <!-- <mat-label>Employee ID</mat-label> -->
+                                        <mat-form-field>
+                                            <input matInput type="text" placeholder="EmployeeId" name="employeeId"
+                                                id="employeeId" formControlName="employeeId">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!-- <mat-label>First Name</mat-label> -->
+                                        <mat-form-field>
+                                            <input matInput type="text" placeholder="FirstName" name="firstName"
+                                                id="firstName" formControlName="firstName">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!-- <mat-label>Last Name</mat-label> -->
+                                        <mat-form-field>
+                                            <input matInput type="text" placeholder="LastName" name="lastName"
+                                                formControlName="lastName">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- <mat-label>Email</mat-label> -->
+                                        <mat-form-field>
+                                            <input matInput type="email" placeholder="Email" name="email"
+                                                formControlName="email">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- <mat-label>Mobile Number</mat-label> -->
+                                        <mat-form-field>
+                                            <input matInput type="text" placeholder="Mobile" name="phoneNumber"
+                                                formControlName="phoneNumber">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- <mat-label>Status</mat-label> -->
+                                        <mat-form-field>
+                                            <mat-select [placeholder]="'User Status'" formControlName="appStatusId">
+                                                <mat-option [value]="null">Select an option</mat-option>
+                                                <mat-option *ngFor="let status of userStatus; let i = index;"
+                                                    [value]="status.appStatusId">
+                                                    {{status.status}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- <mat-label>Role</mat-label> -->
+                                        <mat-form-field>
+                                            <mat-select [placeholder]="'User Role'" formControlName="roleId">
+                                                <mat-option [value]="null">Select an option</mat-option>
+                                                <mat-option *ngFor="let role of roles; let i = index;"
+                                                    [value]="role.roleId">
+                                                    {{role.roleName}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <!-- <mat-label>State</mat-label> -->
+                                        <mat-form-field *ngIf="states.length > 0">
+                                            <mat-select [placeholder]="'States'"
+                                                (selectionChange)="onSelectionchange($event)" formControlName="stateId">
+                                                <mat-form-field>
+                                                    <input matInput type="text" (keyup)="search($event.target.value)"
+                                                        placeholder="search state">
+                                                </mat-form-field>
+                                                <mat-divider></mat-divider>
+                                                <!-- <mat-option [value]="null">Select an option</mat-option> -->
+                                                <mat-option *ngFor="let state of selectedStates; let i = index;"
+                                                    [value]="state.stateId">
+                                                    {{state.stateName}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <!-- <mat-label>City</mat-label> -->
+                                        <mat-form-field>
+                                            <mat-select [placeholder]="'City'" formControlName="cityId"
+                                                [disabled]="cities.length === 0">
+                                                <mat-option [value]="null">Select an option</mat-option>
+                                                <mat-option *ngFor="let city of cities" [value]="city.cityId">
+                                                    {{city.cityName}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-2 align-content-center">
+                                        <mat-label style="color: #0000">-----------</mat-label>
+                                        <button mat-mini-fab color="red;" style="margin:auto;"
+                                            (click)="deleteGroup(index)" [disabled]="i === 0"
+                                            aria-label="Delete current Form">
+                                            <mat-icon>remove_from_queue</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <div class="row action-btn justify-content-between" style="margin-top: 20px;">
+                <div class="col-md-4">
+                    <button md-raised-button type="button" class="btn btn-round btn-block btn-danger"
+                        (click)="goBack()">User Management Home
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button md-raised-button type="button" class="btn btn-round btn-block btn-danger"
+                        (click)="addItem()" [disabled]="!addUserForm.valid">Add New User</button>
+                </div>
+                <div class="col-md-4">
+                    <button md-raised-button type="button" class="btn btn-round btn-block btn-danger"
+                        (click)="saveUser()" [disabled]="!addUserForm.valid">Save</button>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-footer>
+        <!-- <div class="row"> 
+                Chosen name: {{ addUserForm.controls.items.value | json }}
+            </div> -->
+    </mat-card-footer>
+</mat-card>
