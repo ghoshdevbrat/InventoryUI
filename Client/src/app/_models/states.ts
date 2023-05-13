@@ -1,6 +1,9 @@
+import { Cities } from "../_model/cities";
+
 export interface States {
-    stateId: number;
+    id:number;
     stateName: string;
     stateCode: string;
-    stateNameCode: string;   
+    gstStateCode: string;
+    cities: Cities[];
 }
