@@ -16,6 +16,36 @@
   <button mat-button (click)="accordion.openAll()">Expand All</button>
   <button mat-button (click)="accordion.closeAll()">Collapse All</button>
 </div> -->
-<mat-drawer-container>
+<!-- <mat-drawer-container>
   <mat-drawer #drawer></mat-drawer>
-</mat-drawer-container>
+</mat-drawer-container> -->
+<mat-nav-list>
+  <mat-accordion #sidePannel>
+    <a mat-list-item [routerLink]="'/dashboard'" routerLinkActive="link-active">
+      <mat-icon mat-list-icon>dashboard</mat-icon>Dashboard
+    </a>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title><mat-icon> business</mat-icon>&nbsp; Masters</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item>
+          <a mat-list-item [routerLink]="'/master/states'" routerLinkActive="link-active">State Master</a>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon mat-list-icon>person_outline</mat-icon>
+          &nbsp; User Management
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item>
+          <a mat-list-item routerLink="/users" routerLinkActive="link-active">View Users</a>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-nav-list>

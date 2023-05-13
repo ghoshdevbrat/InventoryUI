@@ -12,6 +12,8 @@ import { AccountService } from 'src/app/_services/account.service';
 })
 export class SidenavComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
+  @Input() isExpanded: boolean;
+  @Input() isShowing: boolean;
   constructor(private menuItems: Menuitems,
       private accountService: AccountService,
       private router: Router) {}

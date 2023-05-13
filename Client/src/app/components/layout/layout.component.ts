@@ -19,7 +19,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   events: string[] = [];
   opened: boolean = true;
 
-  isExpanded = false;
+  isExpanded = true;
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;
