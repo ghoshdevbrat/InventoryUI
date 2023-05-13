@@ -20,6 +20,7 @@ import { DateInputComponent } from './_form/date-input/date-input.component';
 import { AddUserComponent } from './admin/users/add-user/add-user.component';
 import { BulkUserAddComponent } from './admin/users/bulk-user-add/bulk-user-add.component';
 import { StateMasterComponent } from './admin/masters/state-master/state-master.component';
+import { CityMasterComponent } from './admin/masters/city-master/city-master.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { StateMasterComponent } from './admin/masters/state-master/state-master.
     DateInputComponent,
     AddUserComponent,
     BulkUserAddComponent,
-    StateMasterComponent
+    StateMasterComponent,
+    CityMasterComponent
   ],
   imports: [
     CommonModule,

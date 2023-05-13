@@ -12,6 +12,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AddUserComponent } from './components/admin/users/add-user/add-user.component';
 import { StateMasterComponent } from './components/admin/masters/state-master/state-master.component';
 import { BulkUserAddComponent } from './components/admin/users/bulk-user-add/bulk-user-add.component';
+import { CityMasterComponent } from './components/admin/masters/city-master/city-master.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -30,7 +31,8 @@ const routes: Routes = [
   {
     path: 'master', component: LayoutComponent, canActivate: [AuthGuard],
     children: [
-      { path: 'states', component: StateMasterComponent }
+      { path: 'states', component: StateMasterComponent },
+      { path: 'city', component: CityMasterComponent}
     ]
   }
 ];
