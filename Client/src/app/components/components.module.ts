@@ -18,6 +18,8 @@ import { ContactComponent } from './contact/contact.component';
 import { InputValidationComponent } from './_form/input-validation/input-validation.component';
 import { DateInputComponent } from './_form/date-input/date-input.component';
 import { AddUserComponent } from './admin/users/add-user/add-user.component';
+import { BulkUserAddComponent } from './admin/users/bulk-user-add/bulk-user-add.component';
+import { StateMasterComponent } from './admin/masters/state-master/state-master.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { AddUserComponent } from './admin/users/add-user/add-user.component';
     ContactComponent,
     InputValidationComponent,
     DateInputComponent,
-    AddUserComponent
+    AddUserComponent,
+    BulkUserAddComponent,
+    StateMasterComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +64,8 @@ import { AddUserComponent } from './admin/users/add-user/add-user.component';
     ContactComponent,
     InputValidationComponent,
     DateInputComponent,
-    AddUserComponent
+    AddUserComponent,
+    BulkUserAddComponent
   ]
 })
 export class ComponentsModule { }
