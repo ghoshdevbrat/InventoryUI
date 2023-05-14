@@ -37,17 +37,21 @@ export class AddProductComponent implements OnInit {
         if (data.didError) {
           Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: data.message,
+            title: 'Oops...!',
+            html: `<b>${data.message}</b>`,
+            timer: 5000,
+            timerProgressBar: true,
             footer: '<a href="">Why do I have this issue?</a>'
-          });
+          });          
         }
         else {
           Swal.fire({
             icon: 'success',
             title: 'success',
-            text: data.message            
-          })          
+            text: data.message,
+            timer: 5000,
+            timerProgressBar: true
+          })
         }
         this.dialogRef.close();
         this.router.navigateByUrl('masters/product-master');

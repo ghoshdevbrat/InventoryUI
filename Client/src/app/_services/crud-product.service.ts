@@ -28,6 +28,7 @@ export class CrudProductService {
   }
 
   saveProduct(productName: string, description: string): Observable<any> {    
+    debugger
     let model = { productName: productName, description: description }
     return this.http.post<any>(this._baseUrl + 'Product/AddProduct', model);
   }  
