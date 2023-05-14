@@ -13,6 +13,7 @@ import { AddUserComponent } from './components/admin/users/add-user/add-user.com
 import { StateMasterComponent } from './components/admin/masters/state-master/state-master.component';
 import { BulkUserAddComponent } from './components/admin/users/bulk-user-add/bulk-user-add.component';
 import { CityMasterComponent } from './components/admin/masters/city-master/city-master.component';
+import { ProductMasterComponent } from './components/admin/masters/product-master/product-master.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -34,6 +35,7 @@ const routes: Routes = [
       { path: 'states', component: StateMasterComponent },
       { path: 'city', component: CityMasterComponent},
       { path: 'city/:stateId', component: CityMasterComponent},
+      { path: 'product-master', component: ProductMasterComponent }
     ]
   }
 ];

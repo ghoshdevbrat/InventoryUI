@@ -21,6 +21,9 @@ import { AddUserComponent } from './admin/users/add-user/add-user.component';
 import { BulkUserAddComponent } from './admin/users/bulk-user-add/bulk-user-add.component';
 import { StateMasterComponent } from './admin/masters/state-master/state-master.component';
 import { CityMasterComponent } from './admin/masters/city-master/city-master.component';
+import { ProductMasterComponent } from './admin/masters/product-master/product-master.component';
+import { AddProductComponent } from './admin/masters/product-master/add-product/add-product.component';
+import { EditProductComponent } from './admin/masters/product-master/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { CityMasterComponent } from './admin/masters/city-master/city-master.com
     AddUserComponent,
     BulkUserAddComponent,
     StateMasterComponent,
-    CityMasterComponent
+    CityMasterComponent,
+    ProductMasterComponent,
+    AddProductComponent,
+    EditProductComponent
   ],
   imports: [
     CommonModule,

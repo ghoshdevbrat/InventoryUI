@@ -1,4 +1,4 @@
-import { Cities } from "../_model/cities";
+import { Cities } from "../_model/masters/cities";
 
 export class States {
     id:number;

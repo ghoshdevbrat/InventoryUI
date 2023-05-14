@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { Cities } from 'src/app/_model/cities';
+import { Cities } from 'src/app/_model/masters/cities';
 import { States } from 'src/app/_models/states';
 import { AdminService } from 'src/app/_services/admin.service';
 

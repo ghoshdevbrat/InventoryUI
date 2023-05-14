@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AppRoles } from 'src/app/_model/admin/app-roles';
 import { RegisterUserModel } from 'src/app/_model/admin/register-user-model';
 import { UserStatus } from 'src/app/_model/admin/user-status';
-import { Cities } from 'src/app/_model/cities';
+import { Cities } from 'src/app/_model/masters/cities';
 import { States } from 'src/app/_models/states';
 import { AdminService } from 'src/app/_services/admin.service';
 import Swal from 'sweetalert2'
