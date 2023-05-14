@@ -15,7 +15,7 @@ export class ToolbarComponent implements OnInit {
   constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('user'));
   }
   sideNavToggle() {
     // this.showStatistics = !this.showStatistics;

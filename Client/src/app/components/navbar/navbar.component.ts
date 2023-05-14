@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.currentUser$.subscribe(user => this.userDto = user);
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('user'));
     console.log(this.userDto);
     this.services = [
       { 

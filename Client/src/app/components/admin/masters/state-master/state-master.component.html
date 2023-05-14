@@ -15,9 +15,8 @@
       <ng-container matColumnDef="stateName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by stateName"> StateName
         </th>
-        <td mat-cell *matCellDef="let element"><a [routerLink]="'/master/city'">{{element.stateName}}</a></td>
+        <td mat-cell *matCellDef="let element"><a [routerLink]="['/master/city',element.stateId]">{{element.stateName}}</a></td>
       </ng-container>
-
       <!-- stateCode Column -->
       <ng-container matColumnDef="stateCode">
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by stateCode"> State Code

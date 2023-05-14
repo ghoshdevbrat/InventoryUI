@@ -51,7 +51,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.showSideNav = false;
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.currentUser = JSON.parse(sessionStorage.getItem('user'));
     //this.getAvailableBalance();
     this.getNotification();
   }

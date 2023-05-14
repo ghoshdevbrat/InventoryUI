@@ -64,7 +64,7 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
     this.router.navigateByUrl('/');
   }
 }

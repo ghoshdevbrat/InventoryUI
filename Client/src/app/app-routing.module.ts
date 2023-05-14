@@ -32,7 +32,8 @@ const routes: Routes = [
     path: 'master', component: LayoutComponent, canActivate: [AuthGuard],
     children: [
       { path: 'states', component: StateMasterComponent },
-      { path: 'city', component: CityMasterComponent}
+      { path: 'city', component: CityMasterComponent},
+      { path: 'city/:stateId', component: CityMasterComponent},
     ]
   }
 ];

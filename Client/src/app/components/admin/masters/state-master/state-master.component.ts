@@ -18,7 +18,8 @@ export class StateMasterComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: false }) set paginator(value: MatPaginator) { this.dataSource.paginator = value; }
   @ViewChild(MatSort, { static: false }) set sort(value: MatSort) { this.dataSource.sort = value; }
   isLoaderResult = true;
-  resultLength = 0
+  resultLength = 0;
+  showCities: boolean = true;
 
   constructor(private adminService: AdminService, private _liveAnnouncer: LiveAnnouncer) { }
   ngAfterViewInit(): void {

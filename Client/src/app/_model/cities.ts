@@ -1,6 +1,10 @@
-export interface Cities {
+export class Cities {
     cityId: number;
     cityName: string;
     stateId: number;
-    pincode: string;
+    constructor() {
+        this.cityId = 0;
+        this.cityName = '';
+        this.stateId = 0;       
+    }
 }

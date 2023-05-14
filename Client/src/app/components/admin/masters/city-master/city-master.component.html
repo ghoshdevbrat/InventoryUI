@@ -1,1 +1,50 @@
-<p>city-master works!</p>
+<mat-card>
+    <mat-card-title>
+        <div class="row">
+            <div class="col-md-8">
+                Cities
+            </div>
+            <div class="col-md-4">
+                <button mat-mini-fab class="pull-right" color="primary" [routerLink]="'/master/states'">
+                    <mat-icon>backspace</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+    <mat-card-content>
+        <div class="row" *ngIf="cities?.length == 0 || cities == null">
+            <p style="background-color: yellow; color: red">
+                no record found
+            </p>
+        </div>
+        <div class="row">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort
+                (matSortChange)="announceSortChange($event)" *ngIf="state.cities.length > 0">
+                <ng-container matColumnDef="srno">
+                    <th mat-header-cell *matHeaderCellDef> S No. </th>
+                    <td mat-cell *matCellDef="let element; let i= dataIndex;">
+                        {{dataSource.filteredData.indexOf(element) + 1}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="cityName">
+                    <th mat-header-cell *matHeaderCellDef>
+                        City Name
+                    </th>
+                    <td mat-cell *matCellDef="let element">{{element.cityName}}</td>
+                </ng-container>
+                <ng-container matColumnDef="stateName">
+                    <th mat-header-cell *matHeaderCellDef>
+                        State
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{state.stateName}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [length]=cities?.length [pageSize]="10" [pageSizeOptions]="[10, 25, 100]"
+                aria-label="Select page"></mat-paginator>
+        </div>
+    </mat-card-content>
+</mat-card>
