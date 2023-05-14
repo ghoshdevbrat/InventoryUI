@@ -1,5 +1,9 @@
 <mat-card>
-    <mat-card-title>Add User</mat-card-title>
+    <mat-card-title>Add User
+        <a mat-mini-fab class="pull-right" color="primary" [routerLink]="['/users']">
+            <mat-icon>backspace</mat-icon>
+        </a>
+    </mat-card-title>
     <mat-card-subtitle>
         {{ addUserForm.controls.model.value | json }}
     </mat-card-subtitle>
@@ -10,7 +14,8 @@
                     *ngFor="let item of addUserForm.get('model')['controls'];let i=index;first as isFirst"
                     [expanded]="isFirst">
                     <mat-expansion-panel-header>
-                        <mat-panel-title><mat-icon>account_circle</mat-icon><span>&nbsp; #{{i + 1}}</span></mat-panel-title>
+                        <mat-panel-title><mat-icon>account_circle</mat-icon><span>&nbsp; #{{i +
+                                1}}</span></mat-panel-title>
                         <mat-panel-description></mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-card>
@@ -22,7 +27,7 @@
                                         <!-- <mat-label>Employee ID</mat-label> -->
                                         <mat-form-field>
                                             <input matInput type="text" placeholder="EmployeeId" name="employeeId"
-                                                id="employeeId" formControlName="employeeId">
+                                                id="employeeId" formControlName="employeeId">                                            
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-4">
@@ -127,19 +132,24 @@
                     </mat-card>
                 </mat-expansion-panel>
             </mat-accordion>
-            <div class="row action-btn justify-content-between" style="margin-top: 20px;">
-                <div class="col-md-4">
+            <div class="row action-btn" style="margin-top: 20px;">
+                <!-- <div class="col-md-4">
                     <button md-raised-button type="button" class="btn btn-round btn-block btn-danger"
                         (click)="goBack()">User Management Home
                     </button>
-                </div>
-                <div class="col-md-4">
-                    <button md-raised-button type="button" class="btn btn-round btn-block btn-danger"
-                        (click)="addItem()" [disabled]="!addUserForm.valid">Add New User</button>
-                </div>
-                <div class="col-md-4">
-                    <button md-raised-button type="button" class="btn btn-round btn-block btn-danger"
-                        (click)="saveUser()" [disabled]="!addUserForm.valid">Save</button>
+                </div> -->
+                <div class="col-md-8"></div>
+                <div class="col-md-2">
+                    <button mat-fab type="button" color="danger" class=" pull-right" (click)="addItem()"
+                        [disabled]="!addUserForm.valid">
+                        <mat-icon>add_to_queue</mat-icon>
+                    </button>
+                    <div class="col-md-2">
+                        <button mat-fab type="button" color="danger" class=" pull-right" (click)="saveUser()"
+                            [disabled]="!addUserForm.valid">
+                            <mat-icon>save</mat-icon>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

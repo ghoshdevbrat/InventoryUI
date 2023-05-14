@@ -25,17 +25,21 @@
       <a mat-list-item [routerLink]="'/dashboard'" routerLinkActive="link-active">
         <mat-icon mat-list-icon>dashboard</mat-icon>Dashboard
       </a>
-    </div>    
+    </div>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title><mat-icon> apps</mat-icon>&nbsp; Masters</mat-panel-title>
       </mat-expansion-panel-header>
       <mat-list>
         <mat-list-item>
-          <a mat-list-item [routerLink]="'/master/states'" routerLinkActive="link-active">State Master</a>
+          <a mat-list-item [routerLink]="'/master/states'" routerLinkActive="link-active">
+            <mat-icon>location_city</mat-icon>&nbsp;State Master
+          </a>
         </mat-list-item>
         <mat-list-item>
-          <a mat-list-item [routerLink]="'/master/states'" routerLinkActive="link-active">Product Master</a>
+          <a mat-list-item [routerLink]="'/master/product-master'" routerLinkActive="link-active">
+            <mat-icon>location_city</mat-icon>&nbsp;Product Master
+          </a>
         </mat-list-item>
       </mat-list>
     </mat-expansion-panel>

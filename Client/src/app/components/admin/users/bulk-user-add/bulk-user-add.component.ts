@@ -6,6 +6,7 @@ import { AppRoles } from 'src/app/_model/admin/app-roles';
 import { RegisterUserModel } from 'src/app/_model/admin/register-user-model';
 import { UserStatus } from 'src/app/_model/admin/user-status';
 import { Cities } from 'src/app/_model/masters/cities';
+import { User } from 'src/app/_model/user';
 import { States } from 'src/app/_models/states';
 import { AdminService } from 'src/app/_services/admin.service';
 import Swal from 'sweetalert2'
@@ -21,6 +22,7 @@ export class BulkUserAddComponent implements OnInit {
   cities: Cities[] = [];
   roles: AppRoles[] = [];
   userStatus: UserStatus[] = [];
+  users: User[];
   registerUserModel: RegisterUserModel;
   panelOpenState = false;
   searchText: string;
@@ -35,8 +37,12 @@ export class BulkUserAddComponent implements OnInit {
     this.addUserForm = new FormGroup({
       model: new FormArray([])
     });
-
+    
     this.addItem();
+
+    this.adminService.getUsers().subscribe(users => {      
+      this.users = users;            
+    });
 
     this.getRoles();
     this.getUserStatus();
@@ -44,7 +50,7 @@ export class BulkUserAddComponent implements OnInit {
     this.adminService.getStates().subscribe(states => {
       this.states = states;
       this.selectedStates = states;
-    })
+    })    
   }
 
   createUserForm(): FormGroup {
@@ -67,7 +73,9 @@ export class BulkUserAddComponent implements OnInit {
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Delete',
+      confirmButtonColor: 'danger',
       denyButtonText: `Don't Delete`,
+      denyButtonColor: 'success'
     }).then((result) => {
       if (result.isConfirmed) {
         const remove = (<FormArray>this.addUserForm.get('model') as FormArray);
@@ -119,6 +127,8 @@ export class BulkUserAddComponent implements OnInit {
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Confirm',
+      confirmButtonColor: 'success',
+      denyButtonColor: 'danger',
       denyButtonText: `Cancel`
     }).then((result) => {
       console.log(result);
